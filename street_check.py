@@ -5,8 +5,7 @@ from fuzzywuzzy import fuzz
 
 class StreetCheck:
     def __init__(self):
-        self.df = pandas.read_csv(
-            'https://data.gov.sk/datastore/dump/a6539561-4664-4980-ae6c-4f3b0c329085?all=true')  # dataframe ulic
+        self.df = pandas.read_csv('dataframe.csv')  # dataframe ulic
         self.street_list = [entry for entry in self.df['streetName']]  # zoznam ulic
 
     def main(self, test):  # urci ci je vstup jeden alebo viac a vrati vysledky
@@ -30,15 +29,10 @@ class StreetCheck:
             ratio_dict[ratio] = (street, street_to_check)
         max_ratio = max(ratio_dict)
         result_dict_[max_ratio] = ratio_dict.get(max_ratio)
-
-        # ratio_fl = Sm(None, street, street_to_check).ratio()
-        # ratio_dict[ratio_fl] = [street, street_to_check]
-        # max_ratio = max(ratio_dict)
-        # result_dict_[max_ratio] = ratio_dict.get(max_ratio)
         for k, v in result_dict_.items():
             original_street = v[1]
             new_key = v[0]
-            if k >= 50:
+            if k >= 60:
                 new_value = str(k) + ' %'
             else:
                 new_key = original_street
