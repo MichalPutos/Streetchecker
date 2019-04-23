@@ -1,1 +1,2 @@
-"Check if the input is name of a street"
+"Check if the input is a name of a street"
+http://nedik.pythonanywhere.com/
